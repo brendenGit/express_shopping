@@ -29,7 +29,7 @@ router.post("/items", (req, res, next) => {
 
         const item = { name, price };
         items.push(item);
-        res.status(200).json({"added": item});
+        res.status(201).json({"added": item});
     } catch (err) {
         next(err);
     };
@@ -48,7 +48,7 @@ router.patch("/items/:name", (req, res, next) => {
         item.name = newName;
         item.price = newPrice;
 
-        res.status(200).json({"updated": item});
+        res.status(201).json({"updated": item});
     } catch (err) {
         next(err);
     };
@@ -62,7 +62,7 @@ router.delete("/items/:name", (req, res, next) => {
         const item = items.find(item => item.name === name)
         if(!item) throw new ExpressError('Cannot find item', 400);
 
-        res.status(200).json({"message": "deleted"});
+        res.status(201).json({"message": "deleted"});
     } catch (err) {
         next(err);
     };
